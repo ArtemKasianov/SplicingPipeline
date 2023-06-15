@@ -1,0 +1,40 @@
+### PRIMARY OPTIONS ###
+### HERE YOU INSERT THE PRIMARY OPTIONS FOR THE PIPELINE ###
+### WITHOUT THEM THE PIPELINE WON'T WORK AND WILL FINISH WITH ERRORS ###
+### PLEASE, TYPE THE VALUES BELOW THE LINES STARTING WITH "!". DON'T CHANGE THESE LINES!!! ###
+
+!input FASTQ-file:
+/mnt/storage/Kovtun/Accumulation_curve/Raw/leaves.nr.fastq,/mnt/storage/Kovtun/Accumulation_curve/Raw/trans_de_novo.fastq.gz
+!input reference FATSA-file:
+/mnt/storage/Kovtun/Arabidopsis_CAGE/Ara.fasta
+!input list of splice-sites:
+/mnt/storage/Kovtun/_Pipeline_v3_/Athaliana/SPLICING_LIST.txt
+!input annotation in BED-format:
+/mnt/storage/Kovtun/_Pipeline_v3_/Athaliana/annotation.bed
+
+### SECONDARY OPTIONS ###
+### HERE YOU INSERT THE SECONDARY OPTIONS FOR THE PIPELINE ###
+### THE PIPELINE CAN EASILY DO WITHOUT THEM AND WILL SIMPLY WRITE EVERYTHING INTO THE CURRENT WORKING DIRECTORY WITH BASIC NAMES ###
+### PLEASE, TYPE THE VALUES BELOW THE LINES STARTING WITH "!". DON'T CHANGE THESE LINES!!! ###
+
+!output directory:
+TEST
+!output prefix:
+TEST
+
+
+### ADDITIONAL OPTIONS FOR EACH MODULE ###
+### HERE YOU CAN EDIT THE DEFAULT OPTIONS FOR EACH MODULE (PROGRAM), INVOLVED IN THE PIPELINE ###
+### YOU NEED TO WRITE THEM IN THE SAME MANNER, AS IT IS REQUIRED IN THEIR MANUALS ###
+### THUS, YOU CAN SUPOSEDLY USE ANY OPTION INITIALLY SUPPORTED BY EACH BUILT-IN TOOL ###
+### PLEASE, TYPE THE VALUES BELOW THE LINES STARTING WITH "!". DON'T CHANGE THESE LINES!!! ###
+### ENJOY! ###
+
+!cutadapt options:
+-a "A{100}" -j 10
+!minimap2 options:
+-ax splice -k14 -uf -t 10 -G 10k
+!samtools view options:
+-@ 10 -bS -F 0x100 -F 0x800 -F 0x4
+!samtools sort options:
+-@ 10
