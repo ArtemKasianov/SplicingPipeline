@@ -1,0 +1,13 @@
+## Please, set pathways to the following tools on your system.
+## By default, they are all supposed to be in PATH.
+
+## Cutadapt pathway. Strongly recommend specifying full path to the script. Otherwise errors are expected.
+
+## Minimap2 pathway
+
+## Samtools pathway
+
+## Trackcluster (insert the pathway to the bam2bigg.py script. Don't forget to first replace it with our fixed version!)
+
+## Bedtools pathway
+
