@@ -262,8 +262,8 @@ my $removedEnds = $output_dir.'level1_ends_removed';
 
 system ("perl $level1_starts_script 0 $list_of_final_mappings > $level1_starts");
 system ("perl $level1_ends_script 0 $list_of_final_mappings > $level1_ends");
-system ("python2 $level2_script -r $removedStarts -o $level2_starts_raw  -t 0 -s 5 $level1_starts");
-system ("python2 $level2_script -r $removedEnds -o $level2_ends_raw -t 0 -s 5 $level1_ends");
+system ("python2 $level2_script -r $removedStarts -o $level2_starts_raw  -t 0.4 -s 20 $level1_starts");
+system ("python2 $level2_script -r $removedEnds -o $level2_ends_raw -t 0.4 -s 20 $level1_ends");
 
 system ("perl $make_peak_counts_per_gene $sorted_genes_list $list_of_bedtools > $gene_read_counts");
 system ("perl $sort_peaks_by_coverage $sorted_genes_list $level2_starts_raw $gene_read_counts > $level2_starts_filtered");
