@@ -273,4 +273,4 @@ system ("perl $sort_peaks_by_coverage $sorted_genes_list $level2_ends_raw $gene_
 
 print "\nMAKING ISOFORMS\n";
 
-system ("perl $finalize_isoforms $level2_starts_filtered $level2_ends_filtered $gene_read_counts unmapped_reads.list.txt $list_of_splicing_files");
+system ("perl $finalize_isoforms $level2_starts_filtered $level2_ends_filtered $gene_read_counts $list_of_splicing_files");
