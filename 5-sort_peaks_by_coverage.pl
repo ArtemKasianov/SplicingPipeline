@@ -2,18 +2,41 @@
 
 %genes = ();
 %coordinates = ();
+my %distToGene = ();
 open (IN, '<', $list_of_genes) or die;
 while ($l = <IN>) {
 	chomp $l;
 	@a = split/\t/, $l;
 	$genes{$a[-1]} = ();
 	if ($a[3] eq '+') {
-		for ($i=$a[1]-100;$i<=$a[2];$i++) {
-			$coordinates{"$a[0]$a[3]$i"} = $a[-1];
+		for ($i=$a[1]-1000;$i<=$a[2];$i++) {
+			my $currDist = abs($i - $a[2]);
+			if (exists $distToGene{"$a[0]$a[3]$i"}) {
+				if ($currDist < $distToGene{"$a[0]$a[3]$i"}) {
+                    			$distToGene{"$a[0]$a[3]$i"} = $currDist;
+					$coordinates{"$a[0]$a[3]$i"} = $a[-1];
+                		}
+            		}
+			else
+			{
+				$coordinates{"$a[0]$a[3]$i"} = $a[-1];
+				$distToGene{"$a[0]$a[3]$i"} = $currDist;
+			}
 		}
 	} else {
-		for ($i=$a[1];$i<=$a[2]+100;$i++) {
-			$coordinates{"$a[0]$a[3]$i"} = $a[-1];
+		for ($i=$a[1];$i<=$a[2]+1000;$i++) {
+			my $currDist = abs($a[1] - $i);
+			if (exists $distToGene{"$a[0]$a[3]$i"}) {
+				if ($currDist < $distToGene{"$a[0]$a[3]$i"}) {
+                    			$distToGene{"$a[0]$a[3]$i"} = $currDist;
+					$coordinates{"$a[0]$a[3]$i"} = $a[-1];
+                		}
+            		}
+			else
+			{
+				$coordinates{"$a[0]$a[3]$i"} = $a[-1];
+				$distToGene{"$a[0]$a[3]$i"} = $currDist;
+			}
 		}
 	}
 }
